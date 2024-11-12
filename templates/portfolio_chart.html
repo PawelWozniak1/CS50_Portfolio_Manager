@@ -1,0 +1,49 @@
+<!-- HTML template for the portfolio chart page (portfolio_chart.html) -->
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio Chart
+{% endblock %}
+
+{% block main %}
+    <canvas id="portfolioChart" width="800" height="400"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('portfolioChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ timestamps | tojson }},
+                datasets: [
+                    {
+                        label: 'Stock Value',
+                        data: {{ stock_value_values | tojson }},
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Total Value',
+                        data: {{ total_value_values | tojson }},
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes: [{ stacked: true }],
+                    yAxes: [{ stacked: true }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            return '$' + tooltipItem.yLabel.toFixed(2);  // Format tooltip values as currency
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}
