@@ -232,6 +232,11 @@ def register():
         if password != confirmation:
             return apology("passwords must match", 400)
 
+        # Check if username already exists
+        existing_user = db.execute("SELECT * FROM users WHERE username = ?", username)
+        if existing_user:
+            return apology("username already exists", 400)
+
         # Hash the password
         hashed_password = generate_password_hash(password)
 
@@ -239,13 +244,12 @@ def register():
         result = db.execute("INSERT INTO users (username, hash) VALUES (?, ?)",
                             username, hashed_password)
 
-        # Check if the username already exists
+        # Check if the insertion was successful
         if not result:
-            return apology("username already exists", 400)
+            return apology("registration failed", 500)
 
         # Log in the newly registered user
-        user_id = result
-        session["user_id"] = user_id
+        session["user_id"] = result
 
         # Redirect user to home page
         return redirect("/")
