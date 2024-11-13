@@ -1,7 +1,5 @@
 # Portfolio Management Web App
 
-This project is a web application designed to help users manage their stock portfolios, including functionalities for registering, logging in, checking stock quotes, viewing portfolio value, and executing transactions. The app allows users to track their investments, monitor stock prices, and simulate stock trades in a secure environment.
-
 This project is a web application designed to manage stock portfolios, allowing users to register, login, and track their stock investments. Built as part of the **CS50's Introduction to Computer Science** course, the application implements key functionalities for managing a portfolio, such as adding stocks, checking stock prices, and viewing portfolio value.
 
 ## Features
