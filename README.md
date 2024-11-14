@@ -2,6 +2,12 @@
 
 This project is a web application designed to manage stock portfolios, allowing users to register, login, and track their stock investments. Built as part of the **CS50's Introduction to Computer Science** course, the application implements key functionalities for managing a portfolio, such as adding stocks, checking stock prices, and viewing portfolio value.
 
+## Accessing the Live Application
+
+The application is hosted on Render. You can access it [here](cs50-portfolio-manager.onrender.com).
+
+**Note:** If the server has not been running for a few hours, it may take up to 2 minutes to start. Render servers are set to pause after inactivity, which can slightly delay initial loading times.
+
 ## Features
 
 - **User Registration and Authentication:** Users can create an account, securely log in, and log out. Passwords are hashed for security.
