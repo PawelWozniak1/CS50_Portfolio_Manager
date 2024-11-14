@@ -4,7 +4,7 @@ This project is a web application designed to manage stock portfolios, allowing 
 
 ## Accessing the Live Application
 
-The application is hosted on Render. You can access it [here](cs50-portfolio-manager.onrender.com).
+The application is hosted on Render. You can access it [here](https://cs50-portfolio-manager.onrender.com).
 
 **Note:** If the server has not been running for a few hours, it may take up to 2 minutes to start. Render servers are set to pause after inactivity, which can slightly delay initial loading times.
 
