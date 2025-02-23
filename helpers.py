@@ -5,8 +5,6 @@ import requests
 import urllib
 import uuid
 import yfinance as yf
-import time
-import requests
 
 from flask import redirect, render_template, request, session
 from functools import wraps
@@ -54,27 +52,20 @@ def login_required(f):
 
 
 def lookup(symbol):
-    """Look up quote for stock symbol."""
+    """Look up quote for symbol using yfinance."""
     try:
-        # Call the API
-        response = requests.get(f"https://api.example.com/quote?symbol={symbol}")
+        # Use yfinance to fetch data for the given symbol
+        stock = yf.Ticker(symbol)
+        hist = stock.history(period="1d")  # Last trading day’s data
+        if hist.empty:
+            return None  # No data returned for the symbol
 
-        # Check if response is valid
-        if response.status_code != 200:
-            return None
+        # Retrieve the adjusted close price for the latest trading day
+        price = round(hist['Close'].iloc[-1], 2)
+        return {"price": price, "symbol": symbol}
 
-        data = response.json()
-        
-        # Introduce a delay to prevent API rate limits
-        time.sleep(2)
-
-        # Return formatted stock data
-        return {
-            "symbol": data["symbol"],
-            "price": float(data["price"]),
-            "name": data["companyName"]
-        }
-    except Exception:
+    except Exception as e:
+        print(f"Error fetching data for symbol {symbol}: {e}")
         return None
 
 

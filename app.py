@@ -1,7 +1,5 @@
 import os
 import plotly.graph_objs as go
-import time
-import requests
 
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
